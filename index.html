@@ -9,7 +9,7 @@
     <title>Safe Travels Lite</title>
 </head>
 <body>
-    <header class="bg-info text-center min-vw-95 min-vh-10">Test</header>
+    <header class="h2 bg-info text-center min-vw-95 min-vh-10">Test</header>
 
     <main class="container bg-warning p-1">
         <div class="row m-auto p-1">
@@ -17,18 +17,19 @@
                     
                     <form id="search-form" class="pb-2 border-bottom border-secondary">
                         <h4>Search for a City:</h4>
-                        <input name="city" id="city" type="text" autofocus="true" class="form-input" placeholder="Enter City Name" />
-                        <button type="submit" class="btn text-center bg-info mt-1">Search</button>
+                        <input name="city" id="city" type="text" autofocus="true" class="d-block form-control rounded" placeholder="Enter City Name" />
+                        <button type="submit" class="d-block btn btn-primary text-center bg-info mt-2">Search</button>
+                        <!--BONUS - add border spinner when loading-->
                     </form>
 
                     <div id="quick-search">
-                        <div class="d-block btn text-center bg-secondary mt-1">Austin</div>
-                        <div class="d-block btn text-center bg-secondary mt-1">Chicago</div>
-                        <div class="d-block btn text-center bg-secondary mt-1">New York</div>
+                        <div class="d-block btn text-center bg-secondary mt-2">Austin</div>
+                        <div class="d-block btn text-center bg-secondary mt-2">Chicago</div>
+                        <div class="d-block btn text-center bg-secondary mt-2">New York</div>
                     </div>
             </nav>
             <div class="col-12 col-md-9 align-item-center">
-                <div class="row today p-1 border border-primary rounded d-block">
+                <div class="row today p-1 mt-1 border border-primary rounded d-block">
                     <h4 id="today">
                         <span id="searched-city">Atlanta</span>
                         <span id="today"> (Date)</span>
@@ -43,11 +44,11 @@
                 <div class="row forecast  p-1 mt-1 d-block">
                     <h4>5-Day Forecast:</h4>
                     <div class="row m-auto justify-content-between"><!--Add 5 day forecast content here col-xl-2 col-md-4 col-12-->
-                        <div class="col-2 bg-dark">Day1</div>
-                        <div class="col-2 bg-dark">Day2</div>
-                        <div class="col-2 bg-dark">Day3</div>
-                        <div class="col-2 bg-dark">Day4</div>
-                        <div class="col-2 bg-dark">Day5</div>
+                        <div class="mt-2 col-12 col-md-5 col-xl-2 bg-dark">Day1</div>
+                        <div class="mt-2 col-12 col-md-5 col-xl-2 bg-dark">Day2</div>
+                        <div class="mt-2 col-12 col-md-5 col-xl-2 bg-dark">Day3</div>
+                        <div class="mt-2 col-12 col-md-5 col-xl-2 bg-dark">Day4</div>
+                        <div class="mt-2 col-12 col-md-5 col-xl-2 bg-dark">Day5</div>
                     </div> 
                 </div>
             </div>
