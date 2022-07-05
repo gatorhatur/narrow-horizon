@@ -9,17 +9,39 @@
     <title>Safe Travels Lite</title>
 </head>
 <body>
-    <header></header>
+    <header class="bg-info text-center min-vw-95 min-vh-10">Test</header>
 
-    <main class="container">
-        <div class="row">
-            <nav class="col-3"></nav>
-            <div class="col-9">
-                <div class="row today">
-                    <!--Add Today-->
+    <main class="container bg-warning p-1">
+        <div class="row m-auto p-1">
+            <nav class="col-12 col-md-3">
+                    
+                    <form id="search-form" class="pb-2 border-bottom border-secondary">
+                        <h4>Search for a City:</h4>
+                        <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+                        <button type="submit" class="btn text-center bg-info mt-1">Search</button>
+                    </form>
+
+                    <form id="quick-search">
+                        <button type="submit" class="btn text-center bg-secondary mt-1">Austin</button>
+                        <button type="submit" class="btn text-center bg-secondary mt-1">Chicago</button>
+                        <button type="submit" class="btn text-center bg-secondary mt-1">New York</button>
+                    </form>
+            </nav>
+            <div class="col-12 col-md-9 bg-secondary align-item-center">
+                <div class="row today bg-info p-1 mt-1 border border-primary rounded d-block">
+                    <h4 id="today">
+                        <span id="searched-city">Atlanta</span>
+                        <span id="today"> (Date)</span>
+                        <span id="today-castmoji">ICON</span>
+                    </h4>
+
+                    <div class="temp">Temp: <span id="today-temp"></span></div>
+                    <div class="wind">Wind: <span id="today-wind"></span></div>
+                    <div class="humidity">Humidity: <span id="today-humidity"></span></div>
+                    <div class="uv-index">UV Index: <span id="today-uv"></span></div>
                 </div>
-                <div class="row forecast">
-                    <!--Add 5 day forecast content here-->
+                <div class="row forecast bg-info p-1 mt-1">
+                    <h4>5-Day Forecast:</h4><!--Add 5 day forecast content here col-xl-2 col-md-4 col-12-->
                 </div>
             </div>
         </div>
