@@ -21,14 +21,14 @@
                         <button type="submit" class="btn text-center bg-info mt-1">Search</button>
                     </form>
 
-                    <form id="quick-search">
-                        <button type="submit" class="btn text-center bg-secondary mt-1">Austin</button>
-                        <button type="submit" class="btn text-center bg-secondary mt-1">Chicago</button>
-                        <button type="submit" class="btn text-center bg-secondary mt-1">New York</button>
-                    </form>
+                    <div id="quick-search">
+                        <div class="d-block btn text-center bg-secondary mt-1">Austin</div>
+                        <div class="d-block btn text-center bg-secondary mt-1">Chicago</div>
+                        <div class="d-block btn text-center bg-secondary mt-1">New York</div>
+                    </div>
             </nav>
-            <div class="col-12 col-md-9 bg-secondary align-item-center">
-                <div class="row today bg-info p-1 border border-primary rounded d-block">
+            <div class="col-12 col-md-9 align-item-center">
+                <div class="row today p-1 border border-primary rounded d-block">
                     <h4 id="today">
                         <span id="searched-city">Atlanta</span>
                         <span id="today"> (Date)</span>
@@ -40,7 +40,7 @@
                     <div class="humidity">Humidity: <span id="today-humidity"></span></div>
                     <div class="uv-index">UV Index: <span id="today-uv"></span></div>
                 </div>
-                <div class="row forecast bg-info p-1 mt-1 d-block">
+                <div class="row forecast  p-1 mt-1 d-block">
                     <h4>5-Day Forecast:</h4>
                     <div class="row m-auto justify-content-between"><!--Add 5 day forecast content here col-xl-2 col-md-4 col-12-->
                         <div class="col-2 bg-dark">Day1</div>
