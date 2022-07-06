@@ -17,6 +17,8 @@ var getForeCast = function () {
                 currentWeather = data.locations;
                 forecast = currentWeather[Object.keys(currentWeather)[0]].values;
                 currentWeather = currentWeather[Object.keys(currentWeather)[0]].currentConditions;
+                setCurrentConditions();
+                setForecast();
                 })
             
         }
@@ -26,7 +28,8 @@ var getForeCast = function () {
 
 var setCurrentConditions = function () {
     $("#searched-city").text(city);
-    $("#today").text("("+dayjs().format(dateFormat)+")");
+    $("#today").text("(" + dayjs().format(dateFormat) + ")");
+    $("#today-castmoji").attr("src", getIcon(forecast[0].conditions));
     $("#today-temp").text(currentWeather.temp);
     $("#today-wind").text(currentWeather.wspd);
     $("#today-humidity").text(currentWeather.humidity);
@@ -39,7 +42,7 @@ var setForecast = function () {
         .children()
         .remove();
     for (var i = 1; i < forecast.length; i++) {
-        console.log(forecast[i].temp);
+        //console.log(forecast[i].temp);
         var dayEl = $("<div>")
             .addClass("rounded mt-2 col-12 col-md-5 col-xl-2 bg-dark text-light pt-1")
             .attr("id",i+"-day");
@@ -49,7 +52,9 @@ var setForecast = function () {
             .addClass("h5");
         dayEl.append(date);
         
-        var icon = $("<img>");
+        var icon = $("<img>")
+            .text(forecast[i].conditions)
+            .attr("src", getIcon(forecast[i].conditions));
         dayEl.append(icon);
 
         var temp = $("<p>")
@@ -67,4 +72,19 @@ var setForecast = function () {
         container.append(dayEl);
     }
 }
+
+var getIcon = function (condition) {
+    switch (condition) {
+        case "Rain, Partially Cloudy":
+        case "Rain, Overcast":
+            return "https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/rain.png";
+        default:
+            console.log(condition);
+            return "https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/clear-day.png";
+    
+    }
+}
+
+getForeCast()
+
 
