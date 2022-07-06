@@ -1,0 +1,11 @@
+#icon-test {
+    background-image: url("https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/3rd%20Set%20-%20Color/clear-day.png") no-repeat top left;
+    height:40px;
+    width:40px;
+    background-color: red;
+}
+
+header {
+    background-image: linear-gradient(to right,blue,darkblue);
+    color: white;
+}
