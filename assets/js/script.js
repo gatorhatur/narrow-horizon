@@ -1,6 +1,6 @@
 
 var apiKey = "JDLUYSFGP26C38G5C7DQ5UGV5"
-var city = "Greensboro";
+var city = "Buffalo";
 var state = ""; //bonus points
 
 //need a css file with Id's that handle the icons
@@ -15,6 +15,9 @@ var getForeCast = function () {
         if (response.ok) {
             response.json().then(function (data) {
                 currentWeather = data.locations;
+                console.log(currentWeather);
+
+                city = currentWeather[Object.keys(currentWeather)[0]].address;
                 forecast = currentWeather[Object.keys(currentWeather)[0]].values;
                 currentWeather = currentWeather[Object.keys(currentWeather)[0]].currentConditions;
                 setCurrentConditions();
@@ -26,7 +29,7 @@ var getForeCast = function () {
 
 }
 
-var setCurrentConditions = function () {
+var setCurrentConditions = function () { //need to ensure we present the name of the city if given a zip code
     $("#searched-city").text(city);
     $("#today").text("(" + dayjs().format(dateFormat) + ")");
     $("#today-castmoji").attr("src", getIcon(forecast[0].conditions));
@@ -74,10 +77,14 @@ var setForecast = function () {
 }
 
 var getIcon = function (condition) {
-    switch (condition) {
-        case "Rain, Partially Cloudy":
-        case "Rain, Overcast":
+    switch (condition.toLowerCase()) {
+        case "rain, partially cloudy":
+        case "rain, overcast":
             return "https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/rain.png";
+        case "partially cloudy":
+            return "https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/partly-cloudy-day.png";
+        case "overcast":
+            return "https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/cloudy.png";
         default:
             console.log(condition);
             return "https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/clear-day.png";
