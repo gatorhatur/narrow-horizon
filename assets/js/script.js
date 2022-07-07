@@ -109,6 +109,12 @@ var getIcon = function (condition) {
     }
 }
 
+var searchHandler = function (event) {
+    console.log(event.target);
+}
+
+var navEl = $(".btn").on("click", searchHandler);
+
 getForeCast()
 
 
