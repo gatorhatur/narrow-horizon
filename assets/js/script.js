@@ -8,7 +8,8 @@ var currentWeather = [];
 var forecast = [];
 var dateFormat = "MM/DD/YY";
 
-var getForeCast = function () {
+var getForeCast = function (location) {
+    city = location;
     var apiUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/forecast?locations=" + city+"&aggregateHours=24&forecastDays=6&contentType=json&iconSet=icons2&shortColumnNames=true&key=" + apiKey;
     //console.log(apiUrl)
 
@@ -109,12 +110,26 @@ var getIcon = function (condition) {
     }
 }
 
-var searchHandler = function (event) {
+var navEl = $(".btn").on("click", function (event) {
     console.log(event.target);
-}
+    var targetEl = $(event.target);
+    if (targetEl.attr("id") === "search") {
+        console.log("we are searching");
+        var location = targetEl.prev().val();
+        if (location) {
+            getForeCast(location);
+        }
+        else {
+            alert("You must make a valid selection"); //replace with a modal message
+        }
+        
+    }
+    else {
+        console.log(targetEl.attr("id"));
+        getForeCast(targetEl.attr("id"));
+    }
+});
 
-var navEl = $(".btn").on("click", searchHandler);
-
-getForeCast()
+//getForeCast(city);
 
 
