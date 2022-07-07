@@ -37,9 +37,9 @@ var setCurrentConditions = function () {
     $("#searched-city").text(city);
     $("#today").text("(" + dayjs().format(dateFormat) + ")");
     $("#today-castmoji").attr("src", getIcon(forecast[0].conditions));
-    $("#today-temp").text(currentWeather.temp);
-    $("#today-wind").text(currentWeather.wspd);
-    $("#today-humidity").text(currentWeather.humidity);
+    $("#today-temp").text(currentWeather.temp+" \xB0F");
+    $("#today-wind").text(currentWeather.wspd+" MPH");
+    $("#today-humidity").text(currentWeather.humidity+"%");
 
     //translate values of uv index
     if (uvi <= 2) {
@@ -78,7 +78,7 @@ var setForecast = function () {
         dayEl.append(icon);
 
         var temp = $("<p>")
-            .text("Temp: "+ forecast[i].temp+" F"); //need to add degrees
+            .text("Temp: "+ forecast[i].temp+" \xB0F"); //need to add degrees
         dayEl.append(temp);
 
         var wind = $("<p>")
