@@ -34,6 +34,7 @@ var getForeCast = function (location) {
                 
                 setCurrentConditions();
                 setForecast();
+                addRecentSearch();
                 })
             
         }
@@ -123,27 +124,7 @@ var getIcon = function (condition) {
     }
 }
 
-var navEl = $(".custom-btn").on("click", function (event) {
-    console.log(event.target);
-    var targetEl = $(event.target);
-    if (targetEl.attr("id") === "search") {
-        console.log("we are searching");
-        var location = targetEl.prev().val();
-        if (location) {
-            getForeCast(location);
-        }
-        else {
-            triggerModal("You must make a valid selection"); //replace with a modal message
-        }
-        $("#city").val("");
-        
-    }
-    else {
-        console.log(targetEl.attr("id"));
-        getForeCast(targetEl.attr("id"));
-    }
 
-});
 
 var triggerModal = function (message) {
     $("#dialog-modal").modal('show');
@@ -157,6 +138,62 @@ $("#dialog-modal").on("click", function (event) {
 
     
 })
+
+var addRecentSearch = function () {
+
+    var temp = city.split(",");
+    city = temp[0].trim() + "-" + temp[1].trim();
+    var cityLower = city.toLowerCase().replace(" ","_");
+
+    console.log(cityLower)
+    console.log($("#" + cityLower).attr("id"))
+
+    var children = [$("#recent").children()][0];
+
+    if (cityLower === $("#" + cityLower).attr("id")) { //against hard coded quick search
+        return console.log("This element already exists");
+    }
+
+ //need to resolve duplicates   
+    for (var i = 0; i < children.length; i++){
+        console.log("new element " + $(children[i]).attr("id"));
+        console.log($("#" + city).attr("id"));
+        console.log(city);
+        
+        if($(children[i]).attr("id") === city){
+            return console.log("This element already exists");
+        }
+    }
+
+
+    var recent = $("<div>")
+        .addClass("d-block btn custom-btn text-center bg-light mt-2")
+        .attr("id", city)
+        .text(city.replace("-",","));
+    
+    $("#recent").append(recent);
+};
+
+var navEl = $("nav").on("click", function (event) {
+    console.log("target is " +event.target);
+    var targetEl = $(event.target);
+    if (targetEl.attr("id") === "search") {
+        console.log("we are searching");
+        var location = $("#city").val();
+        if (location) {
+            getForeCast(location);
+        }
+        else {
+            triggerModal("You must make a valid selection"); //replace with a modal message
+        }
+        $("#city").val("");
+        
+    }else if (targetEl.attr("class").includes("custom-btn")) {
+        console.log(targetEl.attr("id"));
+        getForeCast(targetEl.attr("id").replace("-",","));
+    }
+
+});
 
 //BONUS - recent searches excluding quick search
 //BONUS - favorites, use local storage
