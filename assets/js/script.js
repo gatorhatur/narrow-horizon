@@ -35,6 +35,7 @@ var getForeCast = function (location) {
                 setCurrentConditions();
                 setForecast();
                 addRecentSearch();
+                
                 })
             
         }
@@ -201,6 +202,20 @@ var navEl = $("nav").on("click", function (event) {
 });
 
 $("#fav").on("click", function (element) {
+
+    if ($(this).attr("class").includes("text-warning")) {
+        console.log("removing favorite");
+        $(this).removeClass("text-warning");
+        $("#" + city.toLowerCase()).remove();
+        favLocations.forEach(function (element) {
+            if (element.id === city.toLowerCase()) {
+                favLocations.splice(favLocations.indexOf(element), 1);
+            }
+        })
+        console.log(favLocations);
+        return updateStorage();
+    }
+
     $(this).addClass("text-warning");
 
     var fav = $("<div>")
@@ -221,6 +236,7 @@ $("#fav").on("click", function (element) {
 })
 
 var isFavorite = function (element) {
+
     if (element.parent().attr("id") === "favorites") {
         $("#fav").addClass("text-warning");
     }
