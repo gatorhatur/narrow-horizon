@@ -3,8 +3,8 @@
 
 var apiKey = "JDLUYSFGP26C38G5C7DQ5UGV5"
 var city = "Greensboro";
+var favLocations = [];
 
-//need a css file with Id's that handle the icons
 var currentWeather = [];
 var forecast = [];
 var dateFormat = "MM/DD/YY";
@@ -50,6 +50,7 @@ var setCurrentConditions = function () {
     var uvEl = $("#today-uv").text(uvi);
     
     $("#searched-city").text(city);
+    $("#fav").addClass("oi oi-bookmark");
     $("#today").text("(" + dayjs().format(dateFormat) + ")");
     $("#today-castmoji").attr("src", getIcon(forecast[0].conditions));
     $("#today-temp").text(currentWeather.temp+" \xB0F");
@@ -160,7 +161,7 @@ var addRecentSearch = function () {
         console.log($("#" + city).attr("id"));
         console.log(city);
         
-        if($(children[i]).attr("id") === city){
+        if($(children[i]).attr("id") === cityLower){
             return console.log("This element already exists");
         }
     }
@@ -168,15 +169,19 @@ var addRecentSearch = function () {
 
     var recent = $("<div>")
         .addClass("d-block btn custom-btn text-center bg-light mt-2")
-        .attr("id", city)
+        .attr("id", cityLower)
         .text(city.replace("-",","));
     
     $("#recent").append(recent);
 };
 
 var navEl = $("nav").on("click", function (event) {
+
     console.log("target is " +event.target);
     var targetEl = $(event.target);
+
+    isFavorite(targetEl);
+
     if (targetEl.attr("id") === "search") {
         console.log("we are searching");
         var location = $("#city").val();
@@ -195,6 +200,57 @@ var navEl = $("nav").on("click", function (event) {
 
 });
 
+$("#fav").on("click", function (element) {
+    $(this).addClass("text-warning");
+
+    var fav = $("<div>")
+        .addClass("d-block btn custom-btn text-center bg-warning mt-2")
+        .attr("id", city.toLowerCase())
+        .text(city.replace("-", ","));
+    
+    $("#favorites").append(fav);
+    
+    favLocations.push({
+        id: city.toLowerCase(),
+        display: city.replace("-", ",")
+    });
+    console.log(favLocations);
+    updateStorage();
+
+    console.log(city)
+})
+
+var isFavorite = function (element) {
+    if (element.parent().attr("id") === "favorites") {
+        $("#fav").addClass("text-warning");
+    }
+    else {
+        $("#fav").removeClass("text-warning");
+    }
+
+}
+
+var updateStorage = (element) => { localStorage.setItem("safe_travel_favorites", JSON.stringify(favLocations)) };
+
+$(window).ready(function () {
+    //load from storage
+    favLocations = JSON.parse(localStorage.getItem("safe_travel_favorites"));
+    if (favLocations) {
+        //add butons to nav
+    }
+    else {
+        favLocations = [];
+    }
+    console.log(favLocations);
+    favLocations.forEach(function (element) {
+        var fav = $("<div>")
+        .addClass("d-block btn custom-btn text-center bg-warning mt-2")
+        .attr("id", element.id)
+        .text(element.display);
+    
+    $("#favorites").append(fav);
+    })
+});
 //BONUS - recent searches excluding quick search
 //BONUS - favorites, use local storage
 
