@@ -9,3 +9,11 @@ header {
     background-image: linear-gradient(to right,blue,darkblue);
     color: white;
 }
+
+.custom-btn:hover {
+    border: red solid 2px;
+}
+
+.custom-btn:click {
+    border: red solid 2px;
+}

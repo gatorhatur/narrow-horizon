@@ -80,7 +80,7 @@ var setForecast = function () {
     for (var i = 1; i < forecast.length; i++) {
         //console.log(forecast[i].temp);
         var dayEl = $("<div>")
-            .addClass("rounded mt-2 col-12 col-md-5 col-xl-2 bg-dark text-light pt-1")
+            .addClass("rounded mt-2 col-5 col-md-5 col-xl-2 bg-dark text-light pt-1")
             .attr("id",i+"-day");
 
         var date = $("<p>")          
