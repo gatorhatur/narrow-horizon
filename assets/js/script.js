@@ -52,7 +52,9 @@ var setCurrentConditions = function () {
     $("#searched-city").text(city);
     $("#fav").addClass("oi oi-bookmark");
     $("#today").text("(" + dayjs().format(dateFormat) + ")");
-    $("#today-castmoji").attr("src", getIcon(forecast[0].conditions));
+    $("#today-castmoji")
+        .attr("src", getIcon(forecast[0].conditions))
+        .attr("alt",forecast[0].conditions);
     $("#today-temp").text(currentWeather.temp+" \xB0F");
     $("#today-wind").text(currentWeather.wspd+" MPH");
     $("#today-humidity").text(currentWeather.humidity+"%");
@@ -90,7 +92,8 @@ var setForecast = function () {
         
         var icon = $("<img>")
             .text(forecast[i].conditions)
-            .attr("src", getIcon(forecast[i].conditions));
+            .attr("src", getIcon(forecast[i].conditions))
+            .attr("alt",forecast[i].conditions);
         dayEl.append(icon);
 
         var temp = $("<p>")
