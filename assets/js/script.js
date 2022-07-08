@@ -206,7 +206,8 @@ $("#fav").on("click", function (element) {
     if ($(this).attr("class").includes("text-warning")) {
         console.log("removing favorite");
         $(this).removeClass("text-warning");
-        $("#" + city.toLowerCase()).remove();
+
+        $("#favorites").children("#" + city.toLowerCase()).remove();
         favLocations.forEach(function (element) {
             if (element.id === city.toLowerCase()) {
                 favLocations.splice(favLocations.indexOf(element), 1);
