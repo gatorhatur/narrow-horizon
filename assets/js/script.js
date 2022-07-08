@@ -34,8 +34,7 @@ var getForeCast = function (location) {
                 
                 setCurrentConditions();
                 setForecast();
-                addRecentSearch();
-                
+                addRecentSearch(); 
                 })
             
         }
@@ -71,8 +70,8 @@ var setCurrentConditions = function () {
 }
 
 var setForecast = function () {
-    var container = $("#forecast-row")
-     
+    var container = $("#forecast-row")    
+
     //must be seperated to prevent the info from staying removed    
     container 
         .children()
@@ -126,8 +125,6 @@ var getIcon = function (condition) {
     }
 }
 
-
-
 var triggerModal = function (message) {
     $("#dialog-modal").modal('show');
     $(".modal-body").text(message);
@@ -136,13 +133,12 @@ var triggerModal = function (message) {
 $("#dialog-modal").on("click", function (event) {
     if ($(event.target).attr("class").includes('btn')) {
         $("#dialog-modal").modal("hide");
-    }
-
-    
+    }   
 })
 
 var addRecentSearch = function () {
 
+    //massage city information in prep for recent searches
     var temp = city.split(",");
     city = temp[0].trim() + "-" + temp[1].trim();
     var cityLower = city.toLowerCase().replace(" ","_");
@@ -150,13 +146,13 @@ var addRecentSearch = function () {
     console.log(cityLower)
     console.log($("#" + cityLower).attr("id"))
 
+    //create an array of recent searches
     var children = [$("#recent").children()][0];
 
     if (cityLower === $("#" + cityLower).attr("id")) { //against hard coded quick search
         return console.log("This element already exists");
     }
-
- //need to resolve duplicates   
+  
     for (var i = 0; i < children.length; i++){
         console.log("new element " + $(children[i]).attr("id"));
         console.log($("#" + city).attr("id"));
@@ -178,13 +174,14 @@ var addRecentSearch = function () {
 
 var navEl = $("nav").on("click", function (event) {
 
-    console.log("target is " +event.target);
+    //console.log("target is "+event.target);
     var targetEl = $(event.target);
 
     isFavorite(targetEl);
 
+    //determine if we send user input or predefined id as argument
     if (targetEl.attr("id") === "search") {
-        console.log("we are searching");
+        //console.log("we are searching");
         var location = $("#city").val();
         if (location) {
             getForeCast(location);
@@ -203,10 +200,12 @@ var navEl = $("nav").on("click", function (event) {
 
 $("#fav").on("click", function (element) {
 
+    //checks to if the current elementa already has a class of text-warnin when the fav icon is clicked
     if ($(this).attr("class").includes("text-warning")) {
         console.log("removing favorite");
         $(this).removeClass("text-warning");
 
+        //remove the favorite button from the nav and remove from favLocations array
         $("#favorites").children("#" + city.toLowerCase()).remove();
         favLocations.forEach(function (element) {
             if (element.id === city.toLowerCase()) {
@@ -214,9 +213,12 @@ $("#fav").on("click", function (element) {
             }
         })
         console.log(favLocations);
+        //return and update local storage
         return updateStorage();
     }
 
+    //add class to icon (color change) and add the favorite button to the nav
+    //also update local storage and favLocations array
     $(this).addClass("text-warning");
 
     var fav = $("<div>")
@@ -236,6 +238,7 @@ $("#fav").on("click", function (element) {
     console.log(city)
 })
 
+//need to check for recent searches that have been favorited or remove from recent search if its favorited
 var isFavorite = function (element) {
 
     if (element.parent().attr("id") === "favorites") {
@@ -254,22 +257,21 @@ $(window).ready(function () {
     favLocations = JSON.parse(localStorage.getItem("safe_travel_favorites"));
     if (favLocations) {
         //add butons to nav
+        console.log(favLocations);
+        favLocations.forEach(function (element) {
+            var fav = $("<div>")
+            .addClass("d-block btn custom-btn text-center bg-warning mt-2")
+            .attr("id", element.id)
+            .text(element.display);
+        
+        $("#favorites").append(fav);
+        })
     }
     else {
         favLocations = [];
     }
-    console.log(favLocations);
-    favLocations.forEach(function (element) {
-        var fav = $("<div>")
-        .addClass("d-block btn custom-btn text-center bg-warning mt-2")
-        .attr("id", element.id)
-        .text(element.display);
-    
-    $("#favorites").append(fav);
-    })
+
 });
-//BONUS - recent searches excluding quick search
-//BONUS - favorites, use local storage
 
 //getForeCast(city);
 
