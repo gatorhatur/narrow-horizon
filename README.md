@@ -22,7 +22,7 @@ WHEN I click on a city in the search history<br>
 THEN I am again presented with current and future conditions for that city<br>
 
 ## Links
-<strong>Safe Travels Site: </strong><a href="https://gatorhatur.github.io/narrow-horizon/">Click Here</a><br>
-<strong>Safe Travels GitHub Repo: </strong><a href="https://github.com/gatorhatur/narrow-horizon">Click Here</a>
+<strong>Narrow Horizon Site: </strong><a href="https://gatorhatur.github.io/narrow-horizon/">Click Here</a><br>
+<strong>Narrow Horizon GitHub Repo: </strong><a href="https://github.com/gatorhatur/narrow-horizon">Click Here</a>
 
 <strong>API used: </strong><a href="https://www.visualcrossing.com/resources/documentation/weather-api/weather-api-documentation/#forecast">Visual Crossing Forecast API</a>
