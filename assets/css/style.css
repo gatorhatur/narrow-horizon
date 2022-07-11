@@ -11,9 +11,9 @@ header {
 }
 
 .custom-btn:hover {
-    border: red solid 2px;
+    font-weight: bold;
 }
 
 .custom-btn:click {
-    border: red solid 2px;
+    font-weight: bold;
 }

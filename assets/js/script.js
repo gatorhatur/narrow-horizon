@@ -34,7 +34,9 @@ var getForeCast = function (location) {
                 
                 setCurrentConditions();
                 setForecast();
-                addRecentSearch(); 
+                convertCityToId();
+                addRecentSearch();
+                isFavorite();
                 })
             
         }
@@ -141,13 +143,10 @@ $("#dialog-modal").on("click", function (event) {
 
 var addRecentSearch = function () {
 
-    //massage city information in prep for recent searches
-    var temp = city.split(",");
-    city = temp[0].trim() + "-" + temp[1].trim();
     var cityLower = city.toLowerCase().replace(" ","_");
 
-    console.log(cityLower)
-    console.log($("#" + cityLower).attr("id"))
+    //console.log(cityLower)
+    //console.log($("#" + cityLower).attr("id"))
 
     //create an array of recent searches
     var children = [$("#recent").children()][0];
@@ -179,8 +178,7 @@ var navEl = $("nav").on("click", function (event) {
 
     //console.log("target is "+event.target);
     var targetEl = $(event.target);
-
-    isFavorite(targetEl);
+    console.log(targetEl);
 
     //determine if we send user input or predefined id as argument
     if (targetEl.attr("id") === "search") {
@@ -194,7 +192,7 @@ var navEl = $("nav").on("click", function (event) {
         }
         $("#city").val("");
         
-    }else if (targetEl.attr("class").includes("custom-btn")) {
+    } else if (targetEl.attr("class").includes("custom-btn")) {
         console.log(targetEl.attr("id"));
         getForeCast(targetEl.attr("id").replace("-",","));
     }
@@ -241,10 +239,19 @@ $("#fav").on("click", function (element) {
     console.log(city)
 })
 
-//need to check for recent searches that have been favorited or remove from recent search if its favorited
-var isFavorite = function (element) {
+var convertCityToId = function () {
+    var temp = city.split(",");
+    city = temp[0].trim() + "-" + temp[1].trim();
+}
 
-    if (element.parent().attr("id") === "favorites") {
+//need to check for recent searches that have been favorited or remove from recent search if its favorited
+var isFavorite = function () {
+
+    var favEl = $("#favorites");
+
+    //console.log(favEl.children("#"+city.replace(" ", "_").toLowerCase()).attr("id") === city.replace(" ", "_").toLowerCase());
+
+    if (favEl.children("#"+city.replace(" ", "_").toLowerCase()).attr("id") === city.replace(" ", "_").toLowerCase()) {
         $("#fav").addClass("text-warning");
     }
     else {
