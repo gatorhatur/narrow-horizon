@@ -3,6 +3,8 @@
 ## Purpose
 Knowing what's ahead of you is important to making plans. Whether its preparing for what to where when you travel or planning an outdoor function. This site demonstrates the use of server side APIs to see current weather conditions as well as the forecast for the next 5 days.
 
+![A portion of a search for the weather of Los Angeles, CA](/assets/images/screenshot.jpg)
+
 ## User Story
 AS A traveler<br>
 I WANT to see the weather outlook for multiple cities<br>
