@@ -1,7 +1,7 @@
-# 
+# Narrow Horizon
 
 ## Purpose
-Knowing the weather is important to making plans. Whether its preparing for what to where when you travel or planning an outdoor function. This site demonstrates the use of server side APIs.
+Knowing what's ahead of you is important to making plans. Whether its preparing for what to where when you travel or planning an outdoor function. This site demonstrates the use of server side APIs to see current weather conditions as well as the forecast for the next 5 days.
 
 ## User Story
 AS A traveler<br>
